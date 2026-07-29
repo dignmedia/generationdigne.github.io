@@ -1254,6 +1254,198 @@
   [data-reveal] { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease); }
   [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
 
+  /* ============ LOADER LIQUID GLASS ============ */
+  #page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    background: var(--bg);
+    transition: opacity 0.65s cubic-bezier(.16,1,.3,1), visibility 0.65s;
+  }
+  #page-loader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Blobs animés dans le loader (réplique des bg-blobs) */
+  .loader-blobs {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .loader-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.28;
+  }
+  .loader-blob-1 {
+    width: 55vw; height: 55vw;
+    top: -20%; left: -15%;
+    background: radial-gradient(circle, #b8cfe8 0%, transparent 70%);
+    animation: drift1 14s ease-in-out infinite;
+  }
+  .loader-blob-2 {
+    width: 45vw; height: 45vw;
+    top: 5%; right: -16%;
+    background: radial-gradient(circle, #e8d49a 0%, transparent 70%);
+    opacity: 0.32;
+    animation: drift2 18s ease-in-out infinite;
+  }
+  .loader-blob-3 {
+    width: 48vw; height: 48vw;
+    bottom: -22%; left: 18%;
+    background: radial-gradient(circle, #e8bfb8 0%, transparent 72%);
+    opacity: 0.2;
+    animation: drift3 16s ease-in-out infinite;
+  }
+
+  /* Carte de verre centrale */
+  .loader-card {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 44px 52px;
+    border-radius: 28px;
+    background: linear-gradient(155deg, rgba(255,255,255,0.42), rgba(255,255,255,0.12));
+    border: 1px solid rgba(255,255,255,0.55);
+    backdrop-filter: blur(48px) saturate(220%) brightness(1.1);
+    -webkit-backdrop-filter: blur(48px) saturate(220%) brightness(1.1);
+    min-width: 300px;
+    max-width: 400px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* Shimmer sweep sur la carte */
+  .loader-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(105deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.55) 38%,
+      rgba(255,255,255,0.85) 50%,
+      rgba(255,255,255,0.55) 62%,
+      rgba(255,255,255,0) 100%
+    );
+    background-size: 260% 100%;
+    animation: loaderShimmer 2.4s ease-in-out infinite;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  /* Liseré prismatique en haut */
+  .loader-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 8%; right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(184,146,42,0.4) 20%,
+      rgba(255,255,255,0.95) 50%,
+      rgba(26,58,92,0.3) 80%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+  @keyframes loaderShimmer {
+    0%, 100% { background-position: 200% 0%; opacity: 0.4; }
+    50% { background-position: -60% 0%; opacity: 1; }
+  }
+
+  /* Logo / icône */
+  .loader-logo {
+    font-size: 2.4rem;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Titre */
+  .loader-title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--ink);
+    position: relative;
+    z-index: 1;
+    line-height: 1.3;
+  }
+
+  /* Barre de progression liquide */
+  .loader-progress-wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(26,58,92,0.1);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+  .loader-progress-bar {
+    height: 100%;
+    border-radius: 999px;
+    width: 0%;
+    background: linear-gradient(90deg,
+      var(--emerald-dark) 0%,
+      var(--emerald-bright) 40%,
+      var(--gold) 75%,
+      var(--gold-bright) 100%
+    );
+    background-size: 200% 100%;
+    animation: progressLiquid 1.8s linear infinite;
+    transition: width 0.35s cubic-bezier(.16,1,.3,1);
+    position: relative;
+  }
+  /* Glow sur la barre */
+  .loader-progress-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 60%, rgba(255,255,255,0.6) 80%, transparent 100%);
+    background-size: 200% 100%;
+    animation: progressShine 1.2s ease-in-out infinite;
+  }
+  @keyframes progressLiquid {
+    0% { background-position: 200% 0%; }
+    100% { background-position: -200% 0%; }
+  }
+  @keyframes progressShine {
+    0%, 100% { background-position: 200% 0%; }
+    50% { background-position: -100% 0%; }
+  }
+
+  /* Label statut */
+  .loader-status {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ivory-dimmer);
+    position: relative;
+    z-index: 1;
+    min-height: 1em;
+    transition: opacity 0.3s;
+  }
+
+  /* Empêche le scroll pendant le chargement */
+  body.is-loading {
+    overflow: hidden;
+  }
+
   /* ============ RESPONSIVE ============ */
   @media (max-width: 900px) {
     .petition-card { height: 420px; }
@@ -1322,7 +1514,24 @@
   }
 </style>
 </head>
-<body>
+<body class="is-loading">
+
+  <!-- ============ LOADER LIQUID GLASS ============ -->
+  <div id="page-loader" role="status" aria-label="Chargement en cours">
+    <div class="loader-blobs">
+      <div class="loader-blob loader-blob-1"></div>
+      <div class="loader-blob loader-blob-2"></div>
+      <div class="loader-blob loader-blob-3"></div>
+    </div>
+    <div class="loader-card">
+      <div class="loader-logo">⚖️</div>
+      <div class="loader-title">Les Tours de Guet</div>
+      <div class="loader-progress-wrap">
+        <div class="loader-progress-bar" id="loader-bar"></div>
+      </div>
+      <div class="loader-status" id="loader-status">Initialisation…</div>
+    </div>
+  </div>
 
   <div class="bg-blobs">
     <div class="blob blob-1"></div>
@@ -2208,6 +2417,109 @@
     }, { passive: false });
   })();
 
+})();
+</script>
+
+<script>
+/* ============ LOADER FONCTIONNEL ============
+   Surveille les vraies ressources critiques :
+   1. Polices Google Fonts (document.fonts.ready)
+   2. Images hero du carousel (les deux Unsplash)
+   3. Librairie D3 (déjà en async — on attend son exécution)
+   La barre reflète la progression réelle, pas un faux timer.
+   ============================================ */
+(function () {
+  'use strict';
+
+  var bar      = document.getElementById('loader-bar');
+  var status   = document.getElementById('loader-status');
+  var loader   = document.getElementById('page-loader');
+  var progress = 0;
+
+  function setProgress(pct, label) {
+    progress = Math.max(progress, Math.min(100, pct));
+    if (bar) bar.style.width = progress + '%';
+    if (status && label) status.textContent = label;
+  }
+
+  function dismiss() {
+    setProgress(100, 'Prêt —');
+    // Petit délai pour que la barre atteigne 100% visuellement
+    setTimeout(function () {
+      if (loader) loader.classList.add('is-hidden');
+      document.body.classList.remove('is-loading');
+    }, 420);
+  }
+
+  // --- Ressources à surveiller ---
+
+  // 1. Polices (Promise native)
+  var fontsReady = (document.fonts && document.fonts.ready)
+    ? document.fonts.ready
+    : Promise.resolve();
+
+  // 2. Images critiques du hero carousel
+  var heroImages = [
+    'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&q=80&w=2070',
+    'https://images.unsplash.com/photo-1541872703-74c5e443d1fe?auto=format&fit=crop&q=80&w=2070'
+  ];
+
+  function loadImage(src) {
+    return new Promise(function (resolve) {
+      var img = new Image();
+      img.onload = img.onerror = resolve; // on résout même en erreur
+      img.src = src;
+    });
+  }
+
+  // 3. D3 : on poll jusqu'à ce que window.d3 soit disponible (chargé en async)
+  function waitForD3() {
+    return new Promise(function (resolve) {
+      if (window.d3) { resolve(); return; }
+      var attempts = 0;
+      var id = setInterval(function () {
+        attempts++;
+        if (window.d3 || attempts > 80) { clearInterval(id); resolve(); }
+      }, 75);
+    });
+  }
+
+  // --- Suivi de progression ---
+  setProgress(5, 'Chargement des polices…');
+
+  fontsReady.then(function () {
+    setProgress(28, 'Polices chargées');
+  });
+
+  var img1Done = loadImage(heroImages[0]).then(function () {
+    setProgress(52, 'Images en cours…');
+  });
+
+  var img2Done = loadImage(heroImages[1]).then(function () {
+    setProgress(72, 'Carte interactive…');
+  });
+
+  var d3Done = waitForD3().then(function () {
+    setProgress(90, 'Finalisation…');
+  });
+
+  // --- Fin : toutes les ressources + DOMContentLoaded ---
+  function allReady() {
+    return Promise.all([fontsReady, img1Done, img2Done, d3Done]);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      setProgress(18, 'DOM chargé…');
+      allReady().then(dismiss);
+    });
+  } else {
+    setProgress(18, 'DOM chargé…');
+    allReady().then(dismiss);
+  }
+
+  // Filet de sécurité : au bout de 8 s on lève le loader quoi qu'il arrive
+  setTimeout(dismiss, 8000);
 })();
 </script>
 </body>
