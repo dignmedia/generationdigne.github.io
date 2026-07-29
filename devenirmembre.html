@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devenir membre — Génération Digne</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23f6f2e8'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%23d8b46a'%3E⚖️%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --ink:#1a1a1a; --ink-soft:#2e2e2e;
+    --bg:#f8f5ee; --bg-warm:#f2ede3;
+    --panel:rgba(255,255,255,0.35);
+    --panel-strong:rgba(255,255,255,0.5);
+    --panel-border:rgba(255,255,255,0.5);
+    --emerald:#1a3a5c; --emerald-bright:#1d4f82; --emerald-dark:#122a42;
+    --gold:#b8922a; --gold-bright:#d4a832; --gold-dark:#8a6a18;
+    --rouge:#a0272a; --rouge-bright:#c0312f; --rouge-dim:rgba(160,39,42,0.12);
+    --ivory-dim:#555e58; --ivory-dimmer:#8a9490;
+    --mono:'JetBrains Mono', monospace;
+    --serif:'Fraunces', serif;
+    --sans:'Space Grotesk', sans-serif;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); line-height:1.5;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden; min-height:100vh;
+  }
+  h1,h2,h3{font-family:var(--serif); font-weight:500; margin:0; color:var(--ink);}
+  p{margin:0;} a{color:inherit;} img,svg{display:block;}
+  button{font-family:inherit; cursor:pointer;}
+  ::selection{background:var(--rouge-bright); color:#fff;}
+  :focus-visible{outline:2px solid var(--emerald-bright); outline-offset:3px; border-radius:4px;}
+
+  /* ============ MARQUEE ============ */
+  .marquee-bar{
+    background:linear-gradient(115deg,rgba(18,42,66,.95) 0%,rgba(29,79,130,.88) 35%,rgba(18,42,66,.95) 55%,rgba(29,79,130,.82) 80%,rgba(18,42,66,.95) 100%);
+    background-size:260% 100%; animation:marquee-liquid 9s linear infinite;
+    backdrop-filter:blur(24px) saturate(190%); -webkit-backdrop-filter:blur(24px) saturate(190%);
+    border-bottom:1px solid rgba(255,255,255,.14); color:#fff;
+    font-family:var(--mono); font-size:.74rem; font-weight:600;
+    letter-spacing:.16em; text-transform:uppercase; padding:11px 0; overflow:hidden; position:relative; z-index:60;
+  }
+  .marquee-bar::before{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.16) 45%,rgba(255,255,255,.32) 50%,rgba(255,255,255,.16) 55%,transparent 100%);
+    background-size:250% 100%; animation:marquee-shine 6.5s ease-in-out infinite;
+    mix-blend-mode:overlay; pointer-events:none;
+  }
+  @keyframes marquee-liquid{0%{background-position:260% 0%}100%{background-position:-260% 0%}}
+  @keyframes marquee-shine{0%,100%{background-position:220% 0%}50%{background-position:-120% 0%}}
+  .marquee-track{display:flex;gap:0;width:max-content;position:relative;z-index:2;animation:marquee-scroll 28s linear infinite;}
+  .marquee-track:hover{animation-play-state:paused;}
+  .marquee-item{white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:14px;}
+  .marquee-sep{color:rgba(255,255,255,.5);font-size:.6rem;}
+  @keyframes marquee-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ============ FOND AMBIANT ============ */
+  .bg-blobs{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--bg);}
+  .blob{position:absolute;border-radius:50%;filter:blur(110px);opacity:.25;will-change:transform;}
+  .blob-1{width:50vw;height:50vw;top:-15%;left:-12%;background:radial-gradient(circle,#b8cfe8 0%,transparent 70%);animation:drift1 26s ease-in-out infinite;}
+  .blob-2{width:42vw;height:42vw;top:5%;right:-14%;background:radial-gradient(circle,#e8d49a 0%,transparent 70%);opacity:.3;animation:drift2 32s ease-in-out infinite;}
+  .blob-3{width:46vw;height:46vw;bottom:-20%;left:20%;background:radial-gradient(circle,#e8bfb8 0%,transparent 72%);opacity:.18;animation:drift3 30s ease-in-out infinite;}
+  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(6vw,8vh) scale(1.12)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-7vw,6vh) scale(.92)}}
+  @keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(5vw,-6vh) scale(1.08)}}
+  .grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.025;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  /* ============ LAYOUT ============ */
+  .wrap{max-width:1440px;margin:0 auto;padding:0 40px;}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rouge);display:flex;align-items:center;gap:.6em;}
+  .eyebrow::before{content:'';width:18px;height:1px;background:var(--rouge);opacity:.6;}
+
+  /* ============ NAV ============ */
+  .nav{position:sticky;top:0;z-index:50;padding:14px 0;}
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 18px 10px 14px; border-radius:999px;
+    position:relative; overflow:hidden;
+    background:rgba(248,245,238,.45); border:1px solid rgba(255,255,255,.65);
+    backdrop-filter:blur(60px) saturate(220%) brightness(1.08);
+    -webkit-backdrop-filter:blur(60px) saturate(220%) brightness(1.08);
+    transition:background .4s var(--ease),border-color .4s var(--ease);
+  }
+  .nav-inner::before{
+    content:'';position:absolute;inset:0;border-radius:inherit;
+    background:linear-gradient(105deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.55) 38%,rgba(255,255,255,.8) 50%,rgba(255,255,255,.55) 62%,rgba(255,255,255,0) 100%);
+    background-size:250% 100%;animation:navShimmer 7s ease-in-out infinite;
+    pointer-events:none;z-index:0;mix-blend-mode:overlay;
+  }
+  .nav-inner::after{
+    content:'';position:absolute;top:0;left:8%;right:8%;height:1px;
+    background:linear-gradient(90deg,transparent 0%,rgba(184,146,42,.35) 20%,rgba(255,255,255,.9) 50%,rgba(26,58,92,.25) 80%,transparent 100%);
+    border-radius:999px;pointer-events:none;z-index:1;
+  }
+  .nav-inner>*{position:relative;z-index:2;}
+  @keyframes navShimmer{0%,100%{background-position:200% 0%;opacity:.5}50%{background-position:-50% 0%;opacity:1}}
+  .nav.scrolled .nav-inner{background:rgba(248,245,238,.72);border-color:rgba(255,255,255,.8);}
+
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);}
+  .logo-img{display:block;width:auto;height:56px;max-height:56px;object-fit:contain;filter:drop-shadow(0 0 .18rem rgba(0,0,0,.1));}
+  .logo-mark{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,rgba(26,58,92,.15),rgba(26,58,92,.04));border:1px solid rgba(26,58,92,.25);color:var(--emerald);font-size:1.15rem;}
+
+  .nav-links{display:flex;align-items:center;gap:28px;list-style:none;margin:0;padding:0;}
+  .nav-links a{text-decoration:none;font-size:.92rem;color:var(--ivory-dim);transition:color .25s;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{font-family:var(--sans);font-weight:600;font-size:.88rem;padding:10px 20px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:#fff;text-decoration:none;transition:transform .3s var(--ease);white-space:nowrap;}
+  .nav-cta:hover{transform:translateY(-2px);}
+  .nav-right{display:flex;align-items:center;gap:10px;}
+
+  /* ===== HAMBURGER ===== */
+  .nav-burger{
+    display:none;align-items:center;justify-content:center;
+    width:40px;height:40px;border-radius:50%;
+    border:1px solid rgba(26,58,92,.18);background:rgba(255,255,255,.5);
+    flex-shrink:0;position:relative;
+  }
+  .nav-burger span{
+    position:absolute;top:50%;left:50%;
+    width:18px;height:2px;border-radius:2px;background:var(--ink);
+    transform:translate(-50%,-50%);
+    transition:transform .25s var(--ease),opacity .2s var(--ease),background .2s var(--ease);
+  }
+  .nav-burger span::before,.nav-burger span::after{
+    content:'';position:absolute;left:0;width:18px;height:2px;
+    border-radius:2px;background:var(--ink);transition:transform .25s var(--ease);
+  }
+  .nav-burger span::before{top:-6px;}
+  .nav-burger span::after{top:6px;}
+  .nav-burger.is-open span{background:transparent;}
+  .nav-burger.is-open span::before{top:0;transform:rotate(45deg);}
+  .nav-burger.is-open span::after{top:0;transform:rotate(-45deg);}
+
+  /* panneau mobile */
+  .nav-mobile-panel{
+    position:fixed;inset:0;z-index:49;
+    display:flex;flex-direction:column;
+    padding:110px 24px 40px;
+    background:rgba(248,245,238,.92);
+    backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);
+    opacity:0;visibility:hidden;transform:translateY(-12px);
+    transition:opacity .3s var(--ease),transform .3s var(--ease),visibility .3s;
+  }
+  .nav-mobile-panel.is-open{opacity:1;visibility:visible;transform:translateY(0);}
+  .nav-mobile-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;}
+  .nav-mobile-links li{border-bottom:1px solid rgba(26,58,92,.1);}
+  .nav-mobile-links a{display:flex;align-items:center;justify-content:space-between;padding:18px 4px;text-decoration:none;font-family:var(--serif);font-size:1.3rem;color:var(--ink);}
+  .nav-mobile-links a::after{content:'→';font-family:var(--sans);font-size:1rem;color:var(--gold-dark);}
+  .nav-mobile-cta{margin-top:28px;text-align:center;font-family:var(--sans);font-weight:600;font-size:1rem;padding:16px 20px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:#fff;text-decoration:none;display:block;}
+  body.nav-open{overflow:hidden;}
+
+  @media(max-width:1024px){
+    .nav-links{display:none;}
+    .nav-burger{display:flex;}
+    .nav-cta{padding:9px 16px;font-size:.82rem;}
+  }
+
+  /* ============ HERO ============ */
+  .membership-hero{padding:60px 0 20px;text-align:center;}
+  .membership-hero h1{font-size:clamp(2.4rem,5vw,4rem);line-height:1.08;margin:16px 0 20px;color:var(--ink);}
+  .membership-hero p{font-size:1.1rem;color:var(--ivory-dim);max-width:520px;margin:0 auto;line-height:1.65;}
+
+  /* ============ BARRE DE PROGRESSION (4 étapes) ============ */
+  .progress-wrap{
+    display:flex;align-items:center;justify-content:center;
+    gap:0;margin:48px auto 52px;max-width:680px;position:relative;
+  }
+  .progress-step{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;position:relative;z-index:2;}
+  .progress-step:not(:last-child)::after{
+    content:'';position:absolute;top:19px;left:calc(50% + 20px);
+    width:calc(100% - 40px);height:2px;background:rgba(26,58,92,.12);z-index:0;
+    transition:background .5s var(--ease);
+  }
+  .progress-step.done:not(:last-child)::after{background:var(--gold);}
+  .progress-step.active:not(:last-child)::after{background:linear-gradient(90deg,var(--gold),rgba(26,58,92,.12));}
+  .step-circle{
+    width:40px;height:40px;border-radius:50%;border:2px solid rgba(26,58,92,.15);
+    background:rgba(255,255,255,.5);backdrop-filter:blur(10px);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--ivory-dimmer);
+    transition:all .4s var(--ease);position:relative;z-index:2;
+  }
+  .progress-step.active .step-circle{border-color:var(--gold);background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:#fff;transform:scale(1.1);}
+  .progress-step.done .step-circle{border-color:var(--emerald);background:var(--emerald);color:#fff;}
+  .step-label{font-size:.72rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-dimmer);transition:color .3s;white-space:nowrap;}
+  .progress-step.active .step-label{color:var(--gold-dark);font-weight:600;}
+  .progress-step.done .step-label{color:var(--emerald);}
+
+  /* ============ TUNNEL ============ */
+  .tunnel-wrap{max-width:660px;margin:0 auto;padding:0 40px 100px;}
+  .step-panel{display:none;animation:stepIn .45s var(--ease) both;}
+  .step-panel.active{display:block;}
+  @keyframes stepIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+  /* Carte glass */
+  .form-card{
+    background:linear-gradient(155deg,rgba(255,255,255,.5),rgba(255,255,255,.18));
+    border:1px solid rgba(255,255,255,.6);
+    backdrop-filter:blur(45px) saturate(210%) brightness(1.1);
+    -webkit-backdrop-filter:blur(45px) saturate(210%) brightness(1.1);
+    border-radius:28px;padding:44px 48px;position:relative;overflow:hidden;
+  }
+  .form-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);pointer-events:none;}
+  .form-card h2{font-size:1.9rem;margin-bottom:8px;line-height:1.15;}
+  .form-card .subtitle{font-size:.95rem;color:var(--ivory-dim);margin-bottom:36px;line-height:1.6;}
+
+  /* Champs */
+  .field-group{display:flex;flex-direction:column;gap:18px;margin-bottom:32px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .field{display:flex;flex-direction:column;gap:7px;}
+  .field label{font-size:.8rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-dim);font-weight:600;}
+  .field input,.field select,.field textarea{
+    padding:14px 18px;border-radius:14px;border:1.5px solid rgba(26,58,92,.14);
+    background:rgba(255,255,255,.55);backdrop-filter:blur(10px);
+    font-family:var(--sans);font-size:.97rem;color:var(--ink);outline:none;
+    transition:border-color .25s var(--ease),background .25s var(--ease),box-shadow .25s var(--ease);
+    appearance:none;-webkit-appearance:none;width:100%;
+  }
+  .field input::placeholder,.field textarea::placeholder{color:var(--ivory-dimmer);}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.75);box-shadow:0 0 0 3px rgba(184,146,42,.12);}
+  .field input.error,.field select.error{border-color:var(--rouge-bright);box-shadow:0 0 0 3px rgba(192,49,47,.1);}
+  .field-error{font-size:.76rem;color:var(--rouge-bright);font-family:var(--mono);display:none;}
+  .field input.error~.field-error,.field select.error~.field-error{display:block;}
+  .field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a9490' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:42px;cursor:pointer;}
+  .field textarea{resize:vertical;min-height:110px;line-height:1.55;}
+
+  /* hint sous un champ */
+  .field-hint{font-size:.75rem;color:var(--ivory-dimmer);font-family:var(--mono);}
+
+  /* ============ ENGAGEMENT (step 2) ============ */
+  .engagement-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px;}
+  .engagement-option{position:relative;cursor:pointer;}
+  .engagement-option input[type="checkbox"]{position:absolute;opacity:0;width:0;height:0;}
+  .engagement-label{display:flex;flex-direction:column;gap:6px;padding:18px 20px;border-radius:16px;border:1.5px solid rgba(26,58,92,.13);background:rgba(255,255,255,.45);backdrop-filter:blur(10px);transition:all .25s var(--ease);height:100%;}
+  .engagement-option input:checked+.engagement-label{border-color:var(--gold);background:rgba(184,146,42,.08);box-shadow:0 0 0 3px rgba(184,146,42,.12);}
+  .engagement-label .eng-icon{font-size:1.5rem;}
+  .engagement-label .eng-title{font-weight:700;font-size:.9rem;color:var(--ink);}
+  .engagement-label .eng-desc{font-size:.78rem;color:var(--ivory-dim);line-height:1.45;}
+
+  /* ============ CARTE ANTENNE (step 3) ============ */
+  .map-step-wrap{margin-bottom:28px;}
+  .map-step-hint{
+    display:flex;align-items:flex-start;gap:10px;
+    background:rgba(26,58,92,.05);border:1px solid rgba(26,58,92,.1);
+    border-radius:14px;padding:14px 16px;margin-bottom:20px;
+    font-size:.85rem;color:var(--ivory-dim);line-height:1.5;
+  }
+  .map-step-hint svg{flex-shrink:0;margin-top:1px;color:var(--emerald-bright);}
+  .map-step-visual{
+    position:relative;background:linear-gradient(145deg,#f8f5ee,#eee9de);
+    border-radius:20px;border:1px solid rgba(255,255,255,.8);overflow:hidden;
+    aspect-ratio:1/1.05;max-height:460px;
+  }
+  .map-step-viewport{width:100%;height:100%;overflow:hidden;cursor:grab;position:relative;touch-action:none;}
+  .map-step-viewport:active{cursor:grabbing;}
+  .map-step-canvas{width:100%;height:100%;transform-origin:0 0;transition:transform .05s linear;}
+  .map-step-canvas svg{width:100%;height:100%;display:block;}
+  .map-controls{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:4px;z-index:10;}
+  .map-btn{width:32px;height:32px;border-radius:9px;border:1px solid rgba(255,255,255,.7);background:rgba(255,255,255,.65);backdrop-filter:blur(12px);font-size:1.1rem;font-weight:600;color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .15s;line-height:1;}
+  .map-btn:hover{background:rgba(255,255,255,.88);transform:scale(1.07);}
+  .map-reset-btn{position:absolute;top:12px;right:12px;z-index:10;width:32px;height:32px;border-radius:9px;border:1px solid rgba(255,255,255,.7);background:rgba(255,255,255,.65);backdrop-filter:blur(12px);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .15s;color:var(--emerald);}
+  .map-reset-btn:hover{background:rgba(255,255,255,.88);transform:scale(1.07);}
+  .map-reset-btn svg{width:14px;height:14px;}
+  .map-tooltip-step{position:absolute;pointer-events:none;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.8);border-radius:10px;padding:6px 12px;font-size:.78rem;font-weight:600;color:var(--ink);white-space:nowrap;opacity:0;transition:opacity .15s;z-index:20;}
+
+  /* département surligné (suggestion depuis CP) */
+  .dept-path{fill:#ffffff;stroke:rgba(0,0,0,0.18);stroke-width:.8px;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke;shape-rendering:geometricPrecision;transition:filter .2s,stroke-width .2s,stroke .2s,fill .2s;cursor:pointer;}
+  .dept-path:hover{filter:brightness(0.95);}
+  .dept-path.suggested{fill:var(--gold-bright) !important;}
+  .dept-path.selected{stroke:#1a1a1a !important;stroke-width:1.1px !important;stroke-linejoin:round;stroke-linecap:round;stroke-opacity:.9;paint-order:stroke;filter:drop-shadow(0 0 .5px #1a1a1a);}
+  .platform-username{margin-top:8px;width:100%;padding:9px 12px;border-radius:8px;border:1px solid rgba(0,0,0,.14);font-size:.85rem;font-family:inherit;background:#fff;opacity:0;max-height:0;pointer-events:none;transition:opacity .2s,max-height .2s;}
+  .platform-option.checked .platform-username{opacity:1;max-height:60px;pointer-events:auto;}
+  .platform-option.checked{border-color:var(--gold,#c9962c);}
+
+  /* badge département sélectionné */
+  .selected-dept-badge{
+    display:none;align-items:center;gap:10px;
+    margin-top:14px;padding:12px 18px;border-radius:12px;
+    background:rgba(26,58,92,.06);border:1px solid rgba(26,58,92,.12);
+    font-size:.88rem;font-weight:600;color:var(--emerald-dark);
+  }
+  .selected-dept-badge.visible{display:flex;}
+  .selected-dept-badge svg{flex-shrink:0;color:var(--emerald-bright);}
+
+  /* ============ RÉCAPITULATIF (step 4) ============ */
+  .recap-list{display:flex;flex-direction:column;gap:0;border-radius:16px;overflow:hidden;border:1.5px solid rgba(26,58,92,.1);margin-bottom:28px;}
+  .recap-row{display:flex;align-items:flex-start;justify-content:space-between;padding:14px 20px;background:rgba(255,255,255,.45);border-bottom:1px solid rgba(26,58,92,.07);gap:16px;}
+  .recap-row:last-child{border-bottom:none;}
+  .recap-key{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-dimmer);min-width:110px;flex-shrink:0;padding-top:2px;}
+  .recap-val{font-size:.92rem;font-weight:600;color:var(--ink);text-align:right;word-break:break-word;}
+  .recap-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;}
+  .recap-badge{background:linear-gradient(135deg,rgba(184,146,42,.12),rgba(184,146,42,.06));border:1px solid rgba(184,146,42,.3);border-radius:999px;padding:3px 10px;font-size:.76rem;font-weight:600;color:var(--gold-dark);}
+
+  /* Consentement */
+  .consent-block{display:flex;align-items:flex-start;gap:12px;margin-bottom:28px;padding:16px 18px;border-radius:14px;background:rgba(255,255,255,.3);border:1.5px solid rgba(26,58,92,.1);}
+  .consent-block input[type="checkbox"]{margin-top:2px;width:18px;height:18px;flex-shrink:0;accent-color:var(--gold);cursor:pointer;}
+  .consent-block label{font-size:.84rem;color:var(--ivory-dim);line-height:1.55;cursor:pointer;}
+  .consent-block label a{color:var(--emerald-bright);text-decoration:underline;}
+
+  /* ============ BOUTONS ============ */
+  .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:#fff;font-family:var(--sans);font-weight:700;font-size:.95rem;border:none;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s var(--ease);letter-spacing:.01em;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(184,146,42,.28);}
+  .btn-primary:active{transform:scale(.97);}
+  .btn-primary:disabled{opacity:.55;pointer-events:none;}
+  .btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:999px;background:transparent;color:var(--ivory-dim);font-family:var(--sans);font-weight:600;font-size:.9rem;border:1.5px solid rgba(26,58,92,.18);cursor:pointer;transition:all .25s var(--ease);}
+  .btn-secondary:hover{background:rgba(255,255,255,.5);color:var(--ink);border-color:rgba(26,58,92,.3);}
+  .step-actions{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+
+  /* ============ CONFIRMATION ============ */
+  #confirmation{display:none;text-align:center;animation:stepIn .6s var(--ease) both;}
+  #confirmation.active{display:block;}
+  .confetti-ring{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-bright));display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:2.8rem;animation:ringPop .6s var(--ease) both;box-shadow:0 0 0 0 rgba(184,146,42,.4);}
+  @keyframes ringPop{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+  .confirm-card{background:linear-gradient(155deg,rgba(255,255,255,.5),rgba(255,255,255,.18));border:1px solid rgba(255,255,255,.6);backdrop-filter:blur(45px) saturate(210%) brightness(1.1);-webkit-backdrop-filter:blur(45px) saturate(210%) brightness(1.1);border-radius:28px;padding:60px 48px 52px;position:relative;overflow:hidden;max-width:580px;margin:0 auto;}
+  .confirm-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);}
+  .confirm-card h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:16px;line-height:1.1;}
+  .confirm-card p{color:var(--ivory-dim);font-size:1.05rem;line-height:1.65;margin-bottom:36px;}
+  .confirm-name{color:var(--gold-dark);font-style:italic;}
+  .confirm-meta{display:inline-flex;align-items:center;gap:8px;background:rgba(26,58,92,.06);border:1px solid rgba(26,58,92,.12);border-radius:999px;padding:8px 18px;font-size:.82rem;font-family:var(--mono);color:var(--emerald);margin-bottom:36px;letter-spacing:.06em;}
+  .confirm-meta::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--emerald-bright);display:inline-block;}
+  .confirm-cta{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:.92rem;color:var(--emerald-bright);border-bottom:1.5px solid rgba(29,79,130,.25);padding-bottom:2px;transition:color .2s,border-color .2s;}
+  .confirm-cta:hover{color:var(--emerald-dark);border-color:var(--emerald);}
+
+  /* ============ FOOTER ============ */
+  .footer{background:var(--bg-warm);border-top:1px solid var(--panel-border);padding:44px 0 28px;margin-top:20px;color:var(--ink);}
+  .footer-grid{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;margin-bottom:36px;}
+  .footer-brand{display:flex;flex-direction:column;gap:16px;}
+  .footer-brand .logo-img{height:100px;max-height:100px;width:auto;}
+  .footer-brand p{font-size:.88rem;color:var(--ivory-dim);max-width:300px;line-height:1.6;}
+  .footer-col h4{font-family:var(--serif);font-size:1.05rem;margin:0 0 14px;color:var(--ink);}
+  .footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;}
+  .footer-col a{text-decoration:none;font-size:.88rem;color:var(--ivory-dim);transition:color .2s;}
+  .footer-col a:hover{color:var(--ink);}
+  .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid rgba(0,0,0,.08);font-size:.8rem;color:var(--ivory-dimmer);flex-wrap:wrap;gap:14px;}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:760px){
+    .wrap{padding:0 20px;}
+    .tunnel-wrap{padding:0 20px 80px;}
+    .form-card{padding:30px 24px;}
+    .field-row{grid-template-columns:1fr;}
+    .engagement-grid{grid-template-columns:1fr;}
+    .step-actions{flex-direction:column-reverse;align-items:stretch;text-align:center;}
+    .btn-primary,.btn-secondary{justify-content:center;}
+    .progress-wrap{max-width:100%;padding:0 10px;}
+    .step-label{display:none;}
+    .footer-grid{grid-template-columns:1fr;gap:24px;}
+    .confirm-card{padding:36px 24px 32px;}
+    .map-step-visual{aspect-ratio:1/1;}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+<div class="grain"></div>
+
+<!-- MARQUEE -->
+<div class="marquee-bar" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">⚖️ Démocratie locale &amp; transparence <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">✊ 3 247 signatures cette semaine <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">📢 Prochain débat : mardi 18h, place de la Mairie <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">🗳️ Pétition "Cantines gratuites" : objectif 5 000 <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">🌿 Recours parc Sud déposé — mobilisez-vous <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">⚖️ Démocratie locale &amp; transparence <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">✊ 3 247 signatures cette semaine <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">📢 Prochain débat : mardi 18h, place de la Mairie <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">🗳️ Pétition "Cantines gratuites" : objectif 5 000 <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">🌿 Recours parc Sud déposé — mobilisez-vous <span class="marquee-sep">◆</span></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="logogd.png" alt="Génération digne" class="logo-img">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#actu">L'actu.</a></li>
+        <li><a href="quisommesnous.html">Qui sommes-nous ?</a></li>
+        <li><a href="index.html#map">Le mouvement</a></li>
+        <li><a href="index.html#phares">Pétitions</a></li>
+        <li><a href="nosidees.html">Nos idées</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#membership" class="nav-cta">Rejoindre le mouvement</a>
+        <button class="nav-burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navMobilePanel">
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PANNEAU MOBILE -->
+<div class="nav-mobile-panel" id="navMobilePanel">
+  <ul class="nav-mobile-links">
+    <li><a href="#actu">L'actu.</a></li>
+    <li><a href="#about">Qui sommes-nous ?</a></li>
+    <li><a href="#map">Le mouvement</a></li>
+    <li><a href="#phares">Pétitions</a></li>
+    <li><a href="#toutes">Toutes les pétitions</a></li>
+    <li><a href="nosidees.html">Nos idées</a></li>
+  </ul>
+  <a href="#membership" class="nav-mobile-cta">Rejoindre le mouvement</a>
+</div>
+
+<!-- HERO -->
+<section class="membership-hero">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;">Engagement citoyen</div>
+    <h1>Rejoindre<br><em style="font-style:italic;color:var(--gold-dark);">Génération Digne</em></h1>
+    <p>Quatre étapes pour rejoindre un collectif de citoyens engagés qui agissent concrètement pour changer les choses.</p>
+  </div>
+</section>
+
+<!-- PROGRESS BAR -->
+<div class="wrap">
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-step active" id="pstep-1">
+      <div class="step-circle">01</div>
+      <span class="step-label">Identité</span>
+    </div>
+    <div class="progress-step" id="pstep-2">
+      <div class="step-circle">02</div>
+      <span class="step-label">Engagement</span>
+    </div>
+    <div class="progress-step" id="pstep-3">
+      <div class="step-circle">03</div>
+      <span class="step-label">Antenne</span>
+    </div>
+    <div class="progress-step" id="pstep-4">
+      <div class="step-circle">04</div>
+      <span class="step-label">Confirmation</span>
+    </div>
+  </div>
+</div>
+
+<!-- TUNNEL -->
+<div class="tunnel-wrap">
+
+  <!-- ÉTAPE 1 — Identité -->
+  <div class="step-panel active" id="step-1">
+    <div class="form-card">
+      <div class="eyebrow" style="margin-bottom:12px;">Étape 1 sur 4</div>
+      <h2>Vos informations</h2>
+      <p class="subtitle">Ces informations nous permettent de vous orienter vers l'antenne locale la plus proche.</p>
+
+      <div class="field-group">
+        <div class="field-row">
+          <div class="field">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Marie" autocomplete="given-name">
+            <span class="field-error">Champ requis</span>
+          </div>
+          <div class="field">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Dupont" autocomplete="family-name">
+            <span class="field-error">Champ requis</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Adresse e-mail</label>
+          <input type="email" id="email" name="email" placeholder="marie.dupont@email.fr" autocomplete="email">
+          <span class="field-error">Adresse e-mail invalide</span>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="ddn">Date de naissance</label>
+            <input type="date" id="ddn" name="ddn" autocomplete="bday" max="">
+            <span class="field-error">Date invalide (15 ans minimum)</span>
+          </div>
+          <div class="field">
+            <label for="codepostal">Code postal</label>
+            <input type="text" id="codepostal" name="codepostal" placeholder="75011" maxlength="5" autocomplete="postal-code" inputmode="numeric">
+            <span class="field-hint">Permet de détecter votre département</span>
+            <span class="field-error">Code postal invalide (5 chiffres)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-actions">
+        <span></span>
+        <button class="btn-primary" id="next-1" type="button">
+          Continuer
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 2 — Engagement -->
+  <div class="step-panel" id="step-2">
+    <div class="form-card">
+      <div class="eyebrow" style="margin-bottom:12px;">Étape 2 sur 4</div>
+      <h2>Vos réseaux sociaux</h2>
+      <p class="subtitle">Optionnel - Si vous voulez défendre #GD sur les réseaux, renseignez vos pseudos sur les plateformes où vous êtes présents pour nos bases de données. Cliquez ici pour plus d'infos. </p>
+
+      <div class="engagement-grid" id="platform-grid">
+        <label class="engagement-option platform-option"><input type="checkbox" name="platform" value="instagram"><div class="engagement-label"><span class="eng-icon" style="color:#E1306C"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.198-4.354-2.617-6.78-6.98-6.98-1.28-.059-1.689-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></span><span class="eng-title">Instagram</span><input type="text" class="platform-username" data-platform-label="Instagram" placeholder="@votre_pseudo" disabled></div></label>
+        <label class="engagement-option platform-option"><input type="checkbox" name="platform" value="tiktok"><div class="engagement-label"><span class="eng-icon" style="color:#000"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></span><span class="eng-title">TikTok</span><input type="text" class="platform-username" data-platform-label="TikTok" placeholder="@votre_pseudo" disabled></div></label>
+        <label class="engagement-option platform-option"><input type="checkbox" name="platform" value="x"><div class="engagement-label"><span class="eng-icon" style="color:#000"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span><span class="eng-title">X (Twitter)</span><input type="text" class="platform-username" data-platform-label="X (Twitter)" placeholder="@votre_pseudo" disabled></div></label>
+        <label class="engagement-option platform-option"><input type="checkbox" name="platform" value="facebook"><div class="engagement-label"><span class="eng-icon" style="color:#1877F2"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></span><span class="eng-title">Facebook</span><input type="text" class="platform-username" data-platform-label="Facebook" placeholder="Nom de profil" disabled></div></label>
+        <label class="engagement-option platform-option"><input type="checkbox" name="platform" value="youtube"><div class="engagement-label"><span class="eng-icon" style="color:#FF0000"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></span><span class="eng-title">YouTube</span><input type="text" class="platform-username" data-platform-label="YouTube" placeholder="Nom de chaîne" disabled></div></label>
+        <label class="engagement-option platform-option"><input type="checkbox" name="platform" value="discord"><div class="engagement-label"><span class="eng-icon" style="color:#5865F2"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.076.076 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg></span><span class="eng-title">Discord</span><input type="text" class="platform-username" data-platform-label="Discord" placeholder="pseudo#0000" disabled></div></label>
+        <label class="engagement-option platform-option"><input type="checkbox" name="platform" value="telegram"><div class="engagement-label"><span class="eng-icon" style="color:#26A5E4"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.015-.15-.056-.212-.07-.062-.174-.041-.249-.024-.106.024-1.793 1.14-5.062 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.242-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.478-1.635z"/></svg></span><span class="eng-title">Telegram</span><input type="text" class="platform-username" data-platform-label="Telegram" placeholder="@votre_pseudo" disabled></div></label>
+        <label class="engagement-option platform-option"><input type="checkbox" name="platform" value="linkedin"><div class="engagement-label"><span class="eng-icon" style="color:#0A66C2"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.554V9h3.565v11.452z"/></svg></span><span class="eng-title">LinkedIn</span><input type="text" class="platform-username" data-platform-label="LinkedIn" placeholder="Nom de profil" disabled></div></label>
+      </div>
+
+      <div class="field" style="margin-bottom:32px;">
+        <label for="motivation">Votre motivation (optionnel)</label>
+        <textarea id="motivation" name="motivation" placeholder="En quelques mots, pourquoi voulez-vous rejoindre Génération Digne ?"></textarea>
+      </div>
+
+      <div class="step-actions">
+        <button class="btn-secondary" id="back-2" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Retour
+        </button>
+        <button class="btn-primary" id="next-2" type="button">
+          Choisir mon antenne
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 3 — Carte antenne -->
+  <div class="step-panel" id="step-3">
+    <div class="form-card">
+      <div class="eyebrow" style="margin-bottom:12px;">Étape 3 sur 4</div>
+      <h2>Votre antenne locale</h2>
+      <p class="subtitle">Cliquez sur votre département pour rejoindre l'antenne de votre choix.</p>
+
+      <div class="map-step-wrap">
+        <div class="map-step-hint">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="map-hint-text">Entrez votre code postal à l'étape 1 pour obtenir une suggestion automatique.</span>
+        </div>
+
+        <div class="map-step-visual">
+          <div class="map-controls">
+            <button class="map-btn" id="s3-zoom-in" title="Zoomer" type="button">+</button>
+            <button class="map-btn" id="s3-zoom-out" title="Dézoomer" type="button">−</button>
+          </div>
+          <button class="map-reset-btn" id="s3-reset" title="Réinitialiser" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          </button>
+          <div class="map-step-viewport" id="s3-viewport">
+            <div class="map-step-canvas" id="s3-canvas"></div>
+          </div>
+          <div class="map-tooltip-step" id="s3-tooltip"></div>
+        </div>
+
+        <div class="selected-dept-badge" id="selected-dept-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span id="selected-dept-name">—</span>
+        </div>
+      </div>
+
+      <div class="step-actions">
+        <button class="btn-secondary" id="back-3" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Retour
+        </button>
+        <button class="btn-primary" id="next-3" type="button">
+          Vérifier mes informations
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 4 — Récapitulatif -->
+  <div class="step-panel" id="step-4">
+    <div class="form-card">
+      <div class="eyebrow" style="margin-bottom:12px;">Étape 4 sur 4</div>
+      <h2>Récapitulatif</h2>
+      <p class="subtitle">Vérifiez vos informations avant de valider votre adhésion.</p>
+
+      <div class="recap-list" id="recap-list"></div>
+
+      <div class="consent-block">
+        <input type="checkbox" id="consent" name="consent">
+        <label for="consent">
+          J'accepte que mes données soient utilisées par Génération Digne pour me contacter dans le cadre de mes activités citoyennes. Aucune donnée ne sera cédée à des tiers. <a href="#">Politique de confidentialité</a>.
+        </label>
+      </div>
+
+      <div class="step-actions">
+        <button class="btn-secondary" id="back-4" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Retour
+        </button>
+        <button class="btn-primary" id="submit-btn" type="button" disabled>
+           💪 Rejoindre le mouvement
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRMATION -->
+  <div id="confirmation">
+    <div class="confirm-card">
+      <div class="confetti-ring">🇫🇷</div>
+      <div class="confirm-meta">Membre enregistré</div>
+      <h2>Bienvenue,<br><span class="confirm-name" id="confirm-name"></span> !</h2>
+      <p>
+        Votre adhésion à Génération Digne est confirmée. Un e-mail de bienvenue vous a été envoyé à <strong id="confirm-email"></strong>.<br><br>
+        Nos équipes vous contacteront prochainement pour vous orienter vers l'antenne de <strong id="confirm-dept"></strong>.
+      </p>
+      <a href="index.html" class="confirm-cta">
+        Retour à l'accueil
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /tunnel-wrap -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="logogend.png" alt="Génération Digne" class="logo-img" onerror="this.style.display='none';">
+        </a>
+        <p>Mouvement citoyen indépendant dédié à la démocratie locale, la transparence politique et l'action civique.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html#actu">L'actu.</a></li>
+          <li><a href="index.html#about">Qui sommes-nous ?</a></li>
+          <li><a href="index.html#map">Le mouvement</a></li>
+          <li><a href="index.html#phares">Pétitions</a></li>
+          <li><a href="nosidees.html">Nos idées</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Pétitions</h4>
+        <ul>
+          <li><a href="index.html#phares">Cantines Gratuites</a></li>
+          <li><a href="index.html#toutes">Plan Vélo 2026</a></li>
+          <li><a href="index.html#toutes">Sauvegarde du Parc</a></li>
+          <li><a href="index.html#toutes">Transparence du Budget</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Engagez-vous</h4>
+        <ul>
+          <li><a href="devenirmembre.html">Devenir membre</a></li>
+          <li><a href="index.html#map">Trouver une antenne</a></li>
+          <li><a href="index.html#membership">Rejoindre le mouvement</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Génération Digne — dign.media. Tous droits réservés.</p>
+      <p>Créé pour former le premier mouvement des jeunes engagés.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(function () {
+
+  /* ===================================================
+     HAMBURGER MOBILE
+  =================================================== */
+  const burger = document.getElementById('navBurger');
+  const panel  = document.getElementById('navMobilePanel');
+  if (burger && panel) {
+    function openMenu()  { panel.classList.add('is-open'); burger.classList.add('is-open'); burger.setAttribute('aria-expanded','true'); panel.setAttribute('aria-hidden','false'); document.body.classList.add('nav-open'); }
+    function closeMenu() { panel.classList.remove('is-open'); burger.classList.remove('is-open'); burger.setAttribute('aria-expanded','false'); panel.setAttribute('aria-hidden','true'); document.body.classList.remove('nav-open'); }
+    burger.addEventListener('click', () => panel.classList.contains('is-open') ? closeMenu() : openMenu());
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 1024) closeMenu(); });
+  }
+
+  /* ===================================================
+     NAV SCROLLED
+  =================================================== */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+
+  /* ===================================================
+     MAX DATE (date de naissance — 15 ans min)
+  =================================================== */
+  const ddnInput = document.getElementById('ddn');
+  const maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() - 15);
+  ddnInput.setAttribute('max', maxDate.toISOString().split('T')[0]);
+
+  /* ===================================================
+     ÉTAT DU FORMULAIRE
+  =================================================== */
+  const state = {
+    prenom:'', nom:'', email:'', ddn:'', codepostal:'',
+    plateformes:[], motivation:'',
+    deptCode:'', deptName:''
+  };
+
+  /* ===================================================
+     PRÉ-REMPLISSAGE DE L'E-MAIL (venant du bloc "Rejoindre
+     le mouvement" sur index.html, transmis via ?email=...)
+  =================================================== */
+  (function prefillEmail(){
+    const params = new URLSearchParams(window.location.search);
+    const emailFromUrl = params.get('email');
+    const emailInput = document.getElementById('email');
+    if (emailFromUrl && emailInput) {
+      emailInput.value = emailFromUrl;
+      state.email = emailFromUrl.trim();
+    }
+  })();
+
+  /* ===================================================
+     NAVIGATION ENTRE STEPS
+  =================================================== */
+  let currentStep = 1;
+  const TOTAL = 4;
+
+  function goTo(n) {
+    document.getElementById('step-' + currentStep).classList.remove('active');
+    const ps = document.getElementById('pstep-' + currentStep);
+    ps.classList.remove('active'); ps.classList.add('done');
+    currentStep = n;
+    const np = document.getElementById('step-' + currentStep);
+    if (np) {
+      np.classList.add('active');
+      const nps = document.getElementById('pstep-' + currentStep);
+      nps.classList.add('active'); nps.classList.remove('done');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goBack(n) {
+    document.getElementById('step-' + currentStep).classList.remove('active');
+    const ps = document.getElementById('pstep-' + currentStep);
+    ps.classList.remove('active'); ps.classList.remove('done');
+    currentStep = n;
+    document.getElementById('step-' + currentStep).classList.add('active');
+    const nps = document.getElementById('pstep-' + currentStep);
+    nps.classList.add('active'); nps.classList.remove('done');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ===================================================
+     ÉTAPE 1 — Validation
+  =================================================== */
+  function validateStep1() {
+    let ok = true;
+    // prénom
+    const pEl = document.getElementById('prenom');
+    const pOk = pEl.value.trim().length > 0;
+    pEl.classList.toggle('error', !pOk); if (!pOk) ok = false;
+    // nom
+    const nEl = document.getElementById('nom');
+    const nOk = nEl.value.trim().length > 0;
+    nEl.classList.toggle('error', !nOk); if (!nOk) ok = false;
+    // email
+    const eEl = document.getElementById('email');
+    const eOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(eEl.value);
+    eEl.classList.toggle('error', !eOk); if (!eOk) ok = false;
+    // date de naissance (≥15 ans)
+    const dEl = document.getElementById('ddn');
+    const dVal = dEl.value;
+    let dOk = false;
+    if (dVal) {
+      const born = new Date(dVal);
+      const minAge = new Date(); minAge.setFullYear(minAge.getFullYear() - 15);
+      dOk = born <= minAge;
+    }
+    dEl.classList.toggle('error', !dOk); if (!dOk) ok = false;
+    // code postal (5 chiffres, commence par 0-9, DOM: 971-976)
+    const cpEl = document.getElementById('codepostal');
+    const cpOk = /^\d{5}$/.test(cpEl.value.trim());
+    cpEl.classList.toggle('error', !cpOk); if (!cpOk) ok = false;
+    return ok;
+  }
+
+  document.getElementById('next-1').addEventListener('click', () => {
+    if (!validateStep1()) return;
+    state.prenom     = document.getElementById('prenom').value.trim();
+    state.nom        = document.getElementById('nom').value.trim();
+    state.email      = document.getElementById('email').value.trim();
+    state.ddn        = document.getElementById('ddn').value;
+    state.codepostal = document.getElementById('codepostal').value.trim();
+    goTo(2);
+  });
+
+  /* ===================================================
+     ÉTAPE 2
+  =================================================== */
+  document.getElementById('next-2').addEventListener('click', () => {
+    state.plateformes = Array.from(document.querySelectorAll('.platform-option'))
+      .filter(opt => opt.querySelector('input[type="checkbox"]').checked)
+      .map(opt => ({
+        plateforme: opt.querySelector('input[type="checkbox"]').value,
+        label: opt.querySelector('.platform-username').dataset.platformLabel,
+        pseudo: opt.querySelector('.platform-username').value.trim()
+      }));
+    state.motivation  = document.getElementById('motivation').value.trim();
+    // Préparer la suggestion département
+    prepareDeptSuggestion(state.codepostal);
+    goTo(3);
+  });
+  document.getElementById('back-2').addEventListener('click', () => goBack(1));
+
+  /* Afficher/activer le champ pseudo à la sélection d'une plateforme */
+  document.querySelectorAll('.platform-option').forEach(opt => {
+    const checkbox = opt.querySelector('input[type="checkbox"]');
+    const usernameInput = opt.querySelector('.platform-username');
+    checkbox.addEventListener('change', () => {
+      opt.classList.toggle('checked', checkbox.checked);
+      usernameInput.disabled = !checkbox.checked;
+      if (checkbox.checked) usernameInput.focus();
+    });
+    // Empêche le clic dans le champ pseudo de décocher la case (label englobant)
+    usernameInput.addEventListener('click', e => e.stopPropagation());
+    usernameInput.addEventListener('mousedown', e => e.stopPropagation());
+  });
+
+  /* ===================================================
+     ÉTAPE 3 — CARTE FRANCE
+  =================================================== */
+  document.getElementById('back-3').addEventListener('click', () => goBack(2));
+  document.getElementById('next-3').addEventListener('click', () => {
+    buildRecap();
+    goTo(4);
+  });
+
+  /* Dériver le code département depuis le code postal */
+  function cpToDept(cp) {
+    if (!cp || !/^\d{5}$/.test(cp)) return null;
+    const prefix = cp.substring(0, 2);
+    if (prefix === '97') {
+      const d = cp.substring(0, 3);
+      if (['971','972','973','974','976'].includes(d)) return d;
+    }
+    if (prefix === '20') {
+      const n = parseInt(cp, 10);
+      return n < 20200 ? '2A' : '2B';
+    }
+    return prefix.replace(/^0/, '') || prefix;
+  }
+
+  let suggestedDeptCode = null;
+  let selectedDeptCode  = null;
+  let selectedDeptName  = '—';
+
+  function prepareDeptSuggestion(cp) {
+    suggestedDeptCode = cpToDept(cp);
+    const hint = document.getElementById('map-hint-text');
+    if (suggestedDeptCode && mapLoaded) {
+      highlightSuggested(suggestedDeptCode);
+      hint.textContent = `D'après votre code postal (${cp}), votre département est mis en évidence. Cliquez dessus pour le sélectionner, ou choisissez un autre.`;
+    } else if (suggestedDeptCode) {
+      // la carte se chargera après
+      hint.textContent = `D'après votre code postal (${cp}), votre département sera mis en évidence sur la carte.`;
+    }
+  }
+
+  /* ---- Carte interactive ---- */
+  let mapLoaded = false;
+  let scale = 1, tx = 0, ty = 0;
+  const MIN_SCALE = 0.9, MAX_SCALE = 6;
+
+  const viewport = document.getElementById('s3-viewport');
+  const canvas   = document.getElementById('s3-canvas');
+  const tooltip  = document.getElementById('s3-tooltip');
+
+  function applyTransform(smooth) {
+    canvas.style.transition = smooth ? 'transform 0.25s cubic-bezier(.16,1,.3,1)' : 'none';
+    canvas.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
+  }
+  function clampPan() {
+    if (scale <= 1) { tx = 0; ty = 0; return; }
+    const vw = viewport.clientWidth, vh = viewport.clientHeight;
+    tx = Math.min(0, Math.max(vw - vw * scale, tx));
+    ty = Math.min(0, Math.max(vh - vh * scale, ty));
+  }
+  function zoomAt(cx, cy, delta) {
+    const prev = scale;
+    scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * delta));
+    const f = scale / prev;
+    tx = cx - f * (cx - tx);
+    ty = cy - f * (cy - ty);
+    clampPan(); applyTransform(false);
+  }
+
+  document.getElementById('s3-zoom-in').addEventListener('click', () => {
+    zoomAt(viewport.clientWidth/2, viewport.clientHeight/2, 1.35); applyTransform(true);
+  });
+  document.getElementById('s3-zoom-out').addEventListener('click', () => {
+    zoomAt(viewport.clientWidth/2, viewport.clientHeight/2, 1/1.35); applyTransform(true);
+  });
+  document.getElementById('s3-reset').addEventListener('click', () => {
+    scale=1; tx=0; ty=0; applyTransform(true);
+  });
+
+  viewport.addEventListener('wheel', e => {
+    e.preventDefault();
+    const r = viewport.getBoundingClientRect();
+    zoomAt(e.clientX - r.left, e.clientY - r.top, e.deltaY < 0 ? 1.12 : 1/1.12);
+  }, { passive: false });
+
+  let dragging = false, lastX = 0, lastY = 0;
+  viewport.addEventListener('mousedown', e => { dragging=true; lastX=e.clientX; lastY=e.clientY; viewport.style.cursor='grabbing'; });
+  window.addEventListener('mouseup', () => { dragging=false; viewport.style.cursor='grab'; });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    tx += e.clientX - lastX; ty += e.clientY - lastY;
+    lastX=e.clientX; lastY=e.clientY; clampPan(); applyTransform(false);
+  });
+
+  /* Touch */
+  let tlx=0,tly=0,psd=0,pss=1;
+  function td(a,b){return Math.hypot(b.clientX-a.clientX,b.clientY-a.clientY);}
+  viewport.addEventListener('touchstart', e=>{if(e.touches.length===1){tlx=e.touches[0].clientX;tly=e.touches[0].clientY;}else if(e.touches.length===2){psd=td(e.touches[0],e.touches[1]);pss=scale;}},{passive:true});
+  viewport.addEventListener('touchmove', e=>{
+    if(e.touches.length===1){e.preventDefault();tx+=e.touches[0].clientX-tlx;ty+=e.touches[0].clientY-tly;tlx=e.touches[0].clientX;tly=e.touches[0].clientY;clampPan();applyTransform(false);}
+    else if(e.touches.length===2){e.preventDefault();const r=viewport.getBoundingClientRect();const dist=td(e.touches[0],e.touches[1]);const mx=(e.touches[0].clientX+e.touches[1].clientX)/2-r.left;const my=(e.touches[0].clientY+e.touches[1].clientY)/2-r.top;const ts=Math.min(MAX_SCALE,Math.max(MIN_SCALE,pss*(dist/psd)));zoomAt(mx,my,ts/scale);}
+  },{passive:false});
+
+  function highlightSuggested(code) {
+    if (!mapLoaded) return;
+    document.querySelectorAll('.dept-path').forEach(p => p.classList.remove('suggested'));
+    if (!code) return;
+    const el = document.querySelector(`.dept-path[data-code="${code}"]`);
+    if (el) el.classList.add('suggested');
+  }
+
+  function selectDept(code, name) {
+    document.querySelectorAll('.dept-path').forEach(p => p.classList.remove('selected'));
+    selectedDeptCode = code;
+    selectedDeptName = name;
+    state.deptCode = code;
+    state.deptName = name;
+    const el = document.querySelector(`.dept-path[data-code="${code}"]`);
+    if (el) {
+      el.classList.add('selected');
+      el.parentNode.appendChild(el); // ramène le path au premier plan pour un contour complet
+    }
+    // Badge
+    const badge = document.getElementById('selected-dept-badge');
+    document.getElementById('selected-dept-name').textContent = name;
+    badge.classList.add('visible');
+  }
+
+  /* Charger GeoJSON */
+  fetch('https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson')
+    .then(r => r.json())
+    .then(geojson => {
+      const W = canvas.clientWidth || 500;
+      const H = canvas.clientHeight || 520;
+      const proj = d3.geoConicConformal().center([2.454071,46.279229]).translate([W/2,H/2]).scale(1);
+      const path = d3.geoPath().projection(proj);
+      proj.fitExtent([[24,24],[W-24,H-24]], geojson);
+
+      const svg = d3.select(canvas).append('svg')
+        .attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%').attr('height','100%').style('display','block');
+
+      svg.selectAll('path')
+        .data(geojson.features)
+        .join('path')
+        .attr('d', path)
+        .attr('class', 'dept-path')
+        .attr('data-code', d => d.properties.code)
+        .attr('data-name', d => d.properties.nom || d.properties.code)
+        .attr('fill', '#ffffff')
+        .attr('stroke','rgba(0,0,0,0.18)').attr('stroke-width','0.7').attr('stroke-linejoin','round')
+        .style('cursor','pointer')
+        .on('mouseenter', function(event, d) {
+          tooltip.textContent = (d.properties.nom||d.properties.code);
+          tooltip.style.opacity = '1';
+          if (!this.classList.contains('selected')) d3.select(this).style('filter','brightness(0.95)');
+        })
+        .on('mousemove', function(event) {
+          const r = viewport.getBoundingClientRect();
+          let x = event.clientX - r.left + 12;
+          let y = event.clientY - r.top - 10;
+          if (x + 200 > r.width) x -= 210;
+          tooltip.style.left = x + 'px'; tooltip.style.top = y + 'px';
+        })
+        .on('mouseleave', function() {
+          tooltip.style.opacity = '0';
+          if (!this.classList.contains('selected')) d3.select(this).style('filter','none');
+        })
+        .on('click', function(event, d) {
+          selectDept(d.properties.code, d.properties.nom || d.properties.code);
+        });
+
+      mapLoaded = true;
+
+      // Appliquer suggestion si déjà disponible
+      if (suggestedDeptCode) {
+        highlightSuggested(suggestedDeptCode);
+        const hint = document.getElementById('map-hint-text');
+        hint.textContent = `D'après votre code postal (${state.codepostal}), votre département est mis en évidence. Cliquez dessus pour le sélectionner, ou choisissez un autre.`;
+      }
+    })
+    .catch(() => {
+      document.getElementById('map-hint-text').textContent = 'La carte n\'a pas pu se charger. Vous pouvez continuer sans sélectionner d\'antenne.';
+    });
+
+  /* ===================================================
+     ÉTAPE 4 — Récap
+  =================================================== */
+  document.getElementById('back-4').addEventListener('click', () => {
+    document.getElementById('pstep-4').classList.remove('done');
+    goBack(3);
+  });
+
+  function formatDdn(ddn) {
+    if (!ddn) return '—';
+    const [y,m,d] = ddn.split('-');
+    return `${d}/${m}/${y}`;
+  }
+
+  function buildRecap() {
+    const list = document.getElementById('recap-list');
+    const rows = [
+      { key:'Prénom & Nom', val:`${state.prenom} ${state.nom}` },
+      { key:'E-mail',       val:state.email },
+      { key:'Naissance',    val:formatDdn(state.ddn) },
+      { key:'Code postal',  val:state.codepostal },
+      { key:'Antenne',      val:state.deptName || 'Non sélectionnée' },
+      { key:'Réseaux sociaux', val:null, badges:state.plateformes.length ? state.plateformes.map(p=>`${p.label}${p.pseudo ? ' — ' + p.pseudo : ''}`) : ['Non renseigné'] },
+    ];
+    if (state.motivation) rows.push({ key:'Motivation', val:state.motivation });
+    list.innerHTML = rows.map(r=>`
+      <div class="recap-row">
+        <span class="recap-key">${r.key}</span>
+        ${r.badges
+          ? `<div class="recap-badges">${r.badges.map(b=>`<span class="recap-badge">${b}</span>`).join('')}</div>`
+          : `<span class="recap-val">${r.val}</span>`}
+      </div>
+    `).join('');
+  }
+
+  const consent   = document.getElementById('consent');
+  const submitBtn = document.getElementById('submit-btn');
+  consent.addEventListener('change', () => { submitBtn.disabled = !consent.checked; });
+
+  submitBtn.addEventListener('click', () => {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi en cours…';
+    setTimeout(() => {
+      document.getElementById('step-4').classList.remove('active');
+      document.getElementById('progressWrap').style.display = 'none';
+      document.querySelector('.membership-hero').style.display = 'none';
+      [1,2,3,4].forEach(i => {
+        const ps = document.getElementById('pstep-'+i);
+        ps.classList.remove('active'); ps.classList.add('done');
+      });
+      document.getElementById('confirm-name').textContent  = state.prenom;
+      document.getElementById('confirm-email').textContent = state.email;
+      document.getElementById('confirm-dept').textContent  = state.deptName || 'votre département';
+      document.getElementById('confirmation').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 900);
+  });
+
+})();
+</script>
+</body>
+</html>
